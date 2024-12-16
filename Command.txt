@@ -1,0 +1,8 @@
+Commands used
+
+DynamoDB
+-npm install aws-sdk
+-npm i @aws-sdk/client-s3
+-npm install @aws-sdk/util-dynamodb
+-npm install @aws-sdk/lib-dynamodb
+-npm install @aws-sdk/util-dynamodb
