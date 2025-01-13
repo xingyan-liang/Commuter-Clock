@@ -18,6 +18,7 @@
     "@aws-sdk/lib-dynamodb": "^3.712.0",
     "@aws-sdk/util-dynamodb": "^3.712.0",
     "aws-sdk": "^2.1692.0",
+    "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "expo": "~52.0.17",
     "expo-constants": "~14.0.1",
