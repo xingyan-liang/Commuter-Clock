@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import{getUsers, getUser, putUser, deleteUser, addAlarm} from './accessAPI.js';
 
 export default function App() {
   return (
