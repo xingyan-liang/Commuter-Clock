@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import{getUsers, getUser, putUser, deleteUser, addAlarm} from './accessAPI';
+import Header from './Header';
 
 
 
@@ -27,11 +28,17 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>If you see this, it's running!</Text>
-      <Text style={styles.responseText}>{response}</Text>
-      <StatusBar style="auto" />
+    <View style={{flex: 1}}>
+      <View>
+        <Header title="Commuter Clock"/>
+      </View>
+      <View style={styles.container}>
+        
+        <Text>Open up App.js to start working on your app!</Text>
+        <Text>If you see this, it's running!</Text>
+        <Text style={styles.responseText}>{response}</Text>
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
@@ -39,7 +46,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#1B2028',
     alignItems: 'center',
     justifyContent: 'center',
   },
