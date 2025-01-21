@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import{getUsers, getUser, putUser, deleteUser, addAlarm} from './accessAPI';
-
+import MapView from 'react-native-maps';
 
 
 
@@ -30,6 +30,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <Text>If you see this, it's running!</Text>
+      <MapView style={styles.map} /> 
       <Text style={styles.responseText}>{response}</Text>
       <StatusBar style="auto" />
     </View>
@@ -42,5 +43,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  map: {
+    width: '70%',
+    height: '70%',
   },
 });
