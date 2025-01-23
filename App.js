@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
-import{getUsers, getUser, putUser, deleteUser, addAlarm} from './accessAPI';
+import MapView from 'react-native-maps';
+
+import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessAPI';
 import Header from './Header';
 import AddAlarm from './AddAlarm';
-
-
-
 
 
 export default function App() {
@@ -29,17 +28,18 @@ export default function App() {
 
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <View>
         <Header title="Commuter Clock"/>
       </View>
-      <View style={styles.container}>
-        
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>If you see this, it's running!</Text>
+
+      <Text>Open up App.js to start working on your app!</Text>
+      <Text>If you see this, it's running!</Text>
+      <MapView style={styles.map} /> 
         {/* <AddAlarm/> */}
-        <StatusBar style="auto" />
-      </View>
+      <Text style={styles.responseText}>{response}</Text>
+      <StatusBar style="auto" />
+
     </View>
   );
 }
@@ -50,5 +50,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#1B2028',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  map: {
+    width: '70%',
+    height: '70%',
   },
 });
