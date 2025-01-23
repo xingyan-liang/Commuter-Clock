@@ -4,7 +4,7 @@
     "slug": "Commuter-Clock",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": ".src/assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -22,7 +22,7 @@
       }
     },
     "web": {
-      "favicon": ".src/assets/favicon.png"
+      "favicon": "./src/assets/favicon.png"
     }
   }
 }

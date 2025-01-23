@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
+import colors from "../config/colors";
 
 const Header = ({ title }) => {
   return (

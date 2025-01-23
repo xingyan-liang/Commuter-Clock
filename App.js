@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import MapView from 'react-native-maps';
 
 import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessAPI';
-import Header from './Header';
-import AddAlarm from './AddAlarm';
+ import Header from './src/Components/Header';
+ import AddAlarm from './src/Components/AddAlarm';
 
 
 export default function App() {

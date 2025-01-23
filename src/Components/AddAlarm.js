@@ -2,7 +2,7 @@ import React from "react";
 
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, TouchableHighlight } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
-import colors from "./colors";
+import colors from "../config/colors";
 
 const AddAlarm = () => {
     const[name, onChangeName] = React.useState("name");
