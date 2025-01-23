@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import{getUsers, getUser, putUser, deleteUser, addAlarm} from './accessAPI';
 import Header from './Header';
+import AddAlarm from './AddAlarm';
 
 
 
@@ -36,7 +37,7 @@ export default function App() {
         
         <Text>Open up App.js to start working on your app!</Text>
         <Text>If you see this, it's running!</Text>
-        <Text style={styles.responseText}>{response}</Text>
+        {/* <AddAlarm/> */}
         <StatusBar style="auto" />
       </View>
     </View>
