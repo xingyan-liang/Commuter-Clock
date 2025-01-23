@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
-import{getUsers, getUser, putUser, deleteUser, addAlarm} from './accessAPI';
+import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessAPI';
 import MapView from 'react-native-maps';
 
 
