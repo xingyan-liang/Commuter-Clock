@@ -104,6 +104,9 @@ const styles = StyleSheet.create({
       borderColor: '#FFFFFF',
       alignItems: 'left',
       justifyContent: 'space-between',
+      padding: 20,
+      paddingBottom: 50,
+      bottom: -40,
     },
     textInput: {
         width: 210,
