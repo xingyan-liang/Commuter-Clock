@@ -7,7 +7,8 @@ import {
   View,
   Modal,
   SafeAreaView,
-  Keyboard
+  Keyboard,
+  Platform,
 } from "react-native";
 import { useEffect, useState } from "react";
 import MapView from "react-native-maps";
@@ -44,14 +45,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Header title="Commuter Clock" />
+      <View style={[styles.headerContainer, modalOpen]}>
+        <Header modalOpen={modalOpen} />
       </View>
-
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>If you see this, it's running!</Text>
+       
       {/* <MapView style={styles.map} /> */}
-      {/* <AddAlarm/> */}
       {/* <Text style={styles.responseText}>{response}</Text> */}
       <Modal
         animationType="slide"
@@ -61,8 +59,10 @@ export default function App() {
       >
         <TouchableWithoutFeedback onPress={() => setModalOpen(false)}>
           <View style={styles.modalBackground}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+              <View style={styles.modalContainer}>
                 <AddAlarm />
+              </View>
             </TouchableWithoutFeedback>
           </View>
         </TouchableWithoutFeedback>
@@ -74,6 +74,7 @@ export default function App() {
       >
         <Text style={styles.text}>Open AddAlarm</Text>
       </TouchableOpacity>
+
 
       <StatusBar style="auto" />
     </View>
@@ -110,8 +111,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
   },
-
+  modalContainer: {
+    bottom: -40,
+  },
   headerContainer:{
     alignSelf: "stretch",
-  }
+  },
 });

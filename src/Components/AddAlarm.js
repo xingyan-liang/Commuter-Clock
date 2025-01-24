@@ -1,12 +1,22 @@
 import React from "react";
 
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, TouchableHighlight } from "react-native";
+import {Picker} from '@react-native-picker/picker';
+import { View, Text, StyleSheet, TouchableWithoutFeedback, SafeAreaView, TextInput, TouchableHighlight } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
 
 const AddAlarm = () => {
     const[name, onChangeName] = React.useState("name");
     const[destination, onChangeDest] = React.useState("Dest");
+    const[monday, onChangeMon] = React.useState(false);
+    const[tuesday, onChangeTue] = React.useState(false);
+    const[wednesday, onChangeWed] = React.useState(false);
+    const[thursday, onChangeThu] = React.useState(false);    
+    const[friday, onChangeFri] = React.useState(false);
+    const[saturday, onChangeSat] = React.useState(false);
+    const[sunday, onChangeSun] = React.useState(false);
+    const [selectedLanguage, setSelectedLanguage] = React.useState('java');
+
 
   return (
     <View style={styles.popUpArea}>
@@ -44,41 +54,47 @@ const AddAlarm = () => {
             <Text style={styles.miscText}>Days</Text>
 
             <View style={styles.repeatBoxRow}>
-                <TouchableHighlight>
-                    <View style={styles.repeatBox}>
-                        <Text style={styles.repeatText}>S</Text>
+                <TouchableWithoutFeedback onPress={() => onChangeSun(!sunday)}>
+                    <View style={sunday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={sunday ? styles.repeatTextActive : styles.repeatText}>S</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
 
-                <TouchableHighlight>
-                    <View style={styles.repeatBox}>
-                        <Text style={styles.repeatText}>T</Text>
+                <TouchableWithoutFeedback onPress={() => onChangeMon(!monday)}>
+                    <View style={monday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={monday ? styles.repeatTextActive : styles.repeatText}>M</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
 
-                <TouchableHighlight>
-                    <View style={styles.repeatBox}>
-                        <Text style={styles.repeatText}>W</Text>
+                <TouchableWithoutFeedback onPress={() => onChangeTue(!tuesday)}>
+                    <View style={tuesday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={tuesday ? styles.repeatTextActive : styles.repeatText}>T</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
 
-                <TouchableHighlight>
-                    <View style={styles.repeatBox}>
-                        <Text style={styles.repeatText}>T</Text>
+                <TouchableWithoutFeedback onPress={() => onChangeWed(!wednesday)}>
+                    <View style={wednesday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={wednesday ? styles.repeatTextActive : styles.repeatText}>W</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
 
-                <TouchableHighlight>
-                    <View style={styles.repeatBox}>
-                        <Text style={styles.repeatText}>F</Text>
+                <TouchableWithoutFeedback onPress={() => onChangeThu(!thursday)}>
+                    <View style={thursday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={thursday ? styles.repeatTextActive : styles.repeatText}>T</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
 
-                <TouchableHighlight>
-                    <View style={styles.repeatBox}>
-                        <Text style={styles.repeatText}>S</Text>
+                <TouchableWithoutFeedback onPress={() => onChangeFri(!friday)}>
+                    <View style={friday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={friday ? styles.repeatTextActive : styles.repeatText}>F</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
+
+                <TouchableWithoutFeedback onPress={() => onChangeSat(!saturday)}>
+                    <View style={saturday ? styles.repeatBoxActive : styles.repeatBox}>
+                        <Text style={saturday ? styles.repeatTextActive : styles.repeatText}>S</Text>
+                    </View>
+                </TouchableWithoutFeedback>
 
             </View>
 
@@ -86,9 +102,29 @@ const AddAlarm = () => {
 
         <View style={styles.groups}>
             <Text style={styles.miscText}>Types of Transport</Text>
-            <TextInput style={styles.textInput}></TextInput>
+                  <View style={styles.pickerContainer}>
+                    <Picker
+                        selectedValue={selectedLanguage}
+                        style={styles.picker}
+                        dropdownIconColor={'#FFFFFF'}
+                        onValueChange={(itemValue, itemIndex) =>
+                          setSelectedLanguage(itemValue)
+                        }>
+                        <Picker.Item label="Car" value="Car" />
+                        <Picker.Item label="Walk" value="Walk" />
+                        <Picker.Item label="Bus" value="Bus" />
+                        <Picker.Item label="Bike" value="Bike" />
+                    </Picker>
+                  </View>
+            
         </View>
 
+        <TouchableHighlight >
+            <View style={styles.inputButton}>
+                <Text>Create Alarm</Text>
+            </View>
+        </TouchableHighlight>
+ 
     </View>
   );
 };
@@ -101,19 +137,19 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       border: 1,
       borderWidth: 1,
-      borderColor: '#FFFFFF',
+      borderColor: colors.primary,
       alignItems: 'left',
       justifyContent: 'space-between',
-      padding: 20,
+      padding: 30,
+      paddingTop: 20,
       paddingBottom: 50,
-      bottom: -40,
     },
     textInput: {
-        width: 210,
         height: 40,
         borderColor: '#FFFFFF',
         borderWidth: 1,
         color: '#FFFFFF',
+        padding: 10,
     },
     miscText: {
       color: '#FFFFFF',
@@ -122,9 +158,17 @@ const styles = StyleSheet.create({
     repeatBoxRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginInlineEnd: 20,
+      marginInline: 0,
     },
     repeatBox: {
+        backgroundColor: colors.primary,
+        width: 32,
+        height: 32,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    repeatBoxActive: {
         backgroundColor: colors.secondary,
         width: 32,
         height: 32,
@@ -132,10 +176,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    groups: {
-        marginInlineStart: 20,
-    }
-   
+    repeatText: {
+      color: '#FFFFFF',
+    },
+    repeatTextActive: {
+        color: '#000',
+    },
+    inputButton: {
+        backgroundColor: colors.secondary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        width: 200,
+        height: 40,
+    },
+    picker: {
+        height: 37,
+        backgroundColor: colors.background,
+        borderRadius: 30,
+        borderColor: 'black',
+        padding: 10,
+      },
+      pickerContainer: {
+        borderWidth: 1,
+        borderColor: '#',
+        padding: 3,
+        borderRadius: 10,
+        backgroundColor:  colors.background,
+      },
 });
 
 export default AddAlarm;
