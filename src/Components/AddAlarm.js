@@ -13,7 +13,7 @@ const transport = [
     { label: 'Walk', value: 'walk' },
   ];
 
-const AddAlarm = () => {
+const AddAlarm = ({closeModal}) => {
     const[name, onChangeName] = React.useState("name");
     const[destination, onChangeDest] = React.useState("Dest");
     const[monday, onChangeMon] = React.useState(false);
@@ -111,10 +111,8 @@ const AddAlarm = () => {
             </View>      
         </View>
 
-        <TouchableHighlight >
-            <View style={styles.inputButton}>
+        <TouchableHighlight style={styles.inputButton} underlayColor="white" onPress={closeModal} >
                 <Text>Create Alarm</Text>
-            </View>
         </TouchableHighlight>
  
     </View>

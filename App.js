@@ -61,7 +61,7 @@ export default function App() {
           <View style={styles.modalBackground}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
               <View style={styles.modalContainer}>
-                <AddAlarm />
+                <AddAlarm closeModal={() => setModalOpen(false)}/>
               </View>
             </TouchableWithoutFeedback>
           </View>
