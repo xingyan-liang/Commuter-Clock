@@ -1,9 +1,17 @@
 import React from "react";
 
-import {Picker} from '@react-native-picker/picker';
 import { View, Text, StyleSheet, TouchableWithoutFeedback, SafeAreaView, TextInput, TouchableHighlight } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
+import DropdownComponent from "./DropdownComponent";
+
+const transport = [
+    { label: 'Car', value: 'car' },
+    { label: 'Bicycle', value: 'bicycle' },
+    { label: 'Bus', value: 'bus' },
+    { label: 'Train', value: 'train' },
+    { label: 'Walk', value: 'walk' },
+  ];
 
 const AddAlarm = () => {
     const[name, onChangeName] = React.useState("name");
@@ -46,12 +54,7 @@ const AddAlarm = () => {
         </View>
 
         <View style={styles.groups}>
-            <Text style={styles.miscText}>Repeat</Text>
-            <TextInput style={styles.textInput}></TextInput>
-        </View>
-
-        <View style={styles.groups}>
-            <Text style={styles.miscText}>Days</Text>
+            <Text style={styles.miscText}>Repeat on</Text>
 
             <View style={styles.repeatBoxRow}>
                 <TouchableWithoutFeedback onPress={() => onChangeSun(!sunday)}>
@@ -102,21 +105,10 @@ const AddAlarm = () => {
 
         <View style={styles.groups}>
             <Text style={styles.miscText}>Types of Transport</Text>
-                  <View style={styles.pickerContainer}>
-                    <Picker
-                        selectedValue={selectedLanguage}
-                        style={styles.picker}
-                        dropdownIconColor={'#FFFFFF'}
-                        onValueChange={(itemValue, itemIndex) =>
-                          setSelectedLanguage(itemValue)
-                        }>
-                        <Picker.Item label="Car" value="Car" />
-                        <Picker.Item label="Walk" value="Walk" />
-                        <Picker.Item label="Bus" value="Bus" />
-                        <Picker.Item label="Bike" value="Bike" />
-                    </Picker>
-                  </View>
+            <View style={styles.map}>
+                <DropdownComponent data={transport}/>
             
+            </View>      
         </View>
 
         <TouchableHighlight >
@@ -186,24 +178,12 @@ const styles = StyleSheet.create({
         backgroundColor: colors.secondary,
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf: 'center',
         borderRadius: 10,
         width: 200,
         height: 40,
     },
-    picker: {
-        height: 37,
-        backgroundColor: colors.background,
-        borderRadius: 30,
-        borderColor: 'black',
-        padding: 10,
-      },
-      pickerContainer: {
-        borderWidth: 1,
-        borderColor: '#',
-        padding: 3,
-        borderRadius: 10,
-        backgroundColor:  colors.background,
-      },
+
 });
 
 export default AddAlarm;
