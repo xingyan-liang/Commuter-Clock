@@ -12,18 +12,18 @@ import { Quicksand_300Light } from '@expo-google-fonts/quicksand';
 
 const AlarmBlock = (props) => {
   return (
-    <View style={styles.alarmBlock}>
+    <View style={[styles.alarmBlock, styles.alarmBlockOn]}>
       <View style={styles.topLine}>
         <Text style = {[styles.text, styles.alarmName]}>{props.name}</Text>
         <View style = {styles.topRight}>
           <View style = {styles.days}>
-            <Text style={[styles.text, styles.repeatingDay]}>S</Text>
-            <Text style={[styles.text, styles.repeatingDay]}>M</Text>
+            <Text style={[styles.text, styles.nonRepeatingDay]}>S</Text>
+            <Text style={[styles.text, styles.nonRepeatingDay]}>M</Text>
             <Text style={[styles.text, styles.repeatingDay]}>T</Text>
-            <Text style={[styles.text, styles.repeatingDay]}>W</Text>
-            <Text style={[styles.text, styles.repeatingDay]}>T</Text>
+            <Text style={[styles.text, styles.nonRepeatingDay]}>W</Text>
+            <Text style={[styles.text, styles.nonRepeatingDay]}>T</Text>
             <Text style={[styles.text, styles.repeatingDay]}>F</Text>
-            <Text style={[styles.text, styles.repeatingDay]}>S</Text>
+            <Text style={[styles.text, styles.nonRepeatingDay]}>S</Text>
           </View>
           <Feather style = {styles.star} name="star" size={15} color="white"/>
         </View>
@@ -31,12 +31,12 @@ const AlarmBlock = (props) => {
       <View style={styles.bottomLine}>
         <View style = {styles.timeContainer}>
           <Text style={[styles.text, styles.time]}>{props.defaultTime}
-            <Text style={[styles.text, styles.timePeriod]}>{props.defaultTimePeriod}</Text></Text>
+          <Text style={[styles.text, styles.timePeriod]}>{props.defaultTimePeriod}</Text></Text>
           <Text style={[styles.text, styles.timeLabel]}>Default</Text>
         </View>
         <View style = {styles.timeContainerontainer}>
         <Text style={[styles.text, styles.time]}>{props.arrivalTime}
-          <Text style={[styles.text, styles.timePeriod]}>{props.arrivalTimePeriod}</Text></Text>
+        <Text style={[styles.text, styles.timePeriod]}>{props.arrivalTimePeriod}</Text></Text>
         <Text style={[styles.text, styles.timeLabel]}>Arrival</Text>
         </View>
       </View>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   text:{
     fontFamily: 'Quicksand_300Light',
     color: colors.text,
-    fontSize: 16,
+    fontSize: 14,
   },
   alarmBlock: {
     backgroundColor: colors.background,
@@ -69,7 +69,10 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   topRight:{
+    height: 20,
+    width: 95,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   star: {
   },
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
   repeatingDay:{
   },
   nonRepeatingDay:{
-
+    color: colors.primary,
   },
   bottomLine:{
     flexDirection: 'row',
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   timeLabel:{
+    color: colors.primary,
   },
   timePeriod:{
   }
