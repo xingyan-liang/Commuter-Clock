@@ -2,20 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import MapView from 'react-native-maps';
+import * as SplashScreen from 'expo-splash-screen';
 
 import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessAPI';
 
 import Header from './src/components/Header';
 import AddAlarm from './src/components/AddAlarm';
 import AlarmBlock from './src/components/AlarmBlock';
+import MainScreen from './src/screens/MainScreen';
 
 import { Quicksand_300Light, Quicksand_500Medium, useFonts } from '@expo-google-fonts/quicksand';
 import { MontserratAlternates_400Regular} from '@expo-google-fonts/montserrat-alternates';
 
-import * as SplashScreen from 'expo-splash-screen';
-
 SplashScreen.preventAutoHideAsync();
-
 
 export default function App() {
 
@@ -55,27 +54,14 @@ export default function App() {
       <View>
         <Header title="Commuter Clock"/>
       </View>
-
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>If you see this, it's running!</Text>
-        {/* <AddAlarm/> */}
-      <AlarmBlock name = "exampleName" defaultTime = "12:30" defaultTimePeriod = "AM" arrivalTime = "03:45" arrivalTimePeriod = "PM"/>
-      <Text style={styles.responseText}>{response}</Text>
+      <MainScreen/>
       <StatusBar style="auto" />
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#1B2028',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: '70%',
-    height: '70%',
+    justifyContent: 'space-between',
   },
 });

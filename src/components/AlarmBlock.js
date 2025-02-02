@@ -4,11 +4,6 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 
 import colors from '../config/colors.js'
-import { Quicksand_300Light } from '@expo-google-fonts/quicksand';
-
-//type AlarmProps = {
-  //name: string;
-//};
 
 const AlarmBlock = (props) => {
   return (
@@ -31,14 +26,14 @@ const AlarmBlock = (props) => {
       <View style={styles.bottomLine}>
         <View style={styles.timeGrouping}>
           <View style = {styles.timeContainer}>
-            <Text style={[styles.text, styles.time]}>{props.defaultTime}</Text>
+            <Text style={[styles.text, styles.time]}>{props.defaultHour}:{props.defaultMin}</Text>
             <Text style={[styles.text, styles.timePeriod]}>{props.defaultTimePeriod}</Text>
           </View>
           <Text style={[styles.text, styles.timeLabel]}>Default</Text>
         </View>
         <View style={styles.timeGrouping}>
           <View style = {styles.timeContainer}>
-            <Text style={[styles.text, styles.time]}>{props.arrivalTime}</Text>
+            <Text style={[styles.text, styles.time]}>{props.arrivalHour}:{props.arrivalMin}</Text>
             <Text style={[styles.text, styles.timePeriod]}>{props.arrivalTimePeriod}</Text>
           </View>
           <Text style={[styles.text, styles.timeLabel]}>Arrival</Text>
