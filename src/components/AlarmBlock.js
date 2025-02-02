@@ -29,15 +29,19 @@ const AlarmBlock = (props) => {
         </View>
       </View>
       <View style={styles.bottomLine}>
-        <View style = {styles.timeContainer}>
-          <Text style={[styles.text, styles.time]}>{props.defaultTime}
-          <Text style={[styles.text, styles.timePeriod]}>{props.defaultTimePeriod}</Text></Text>
+        <View style={styles.timeGrouping}>
+          <View style = {styles.timeContainer}>
+            <Text style={[styles.text, styles.time]}>{props.defaultTime}</Text>
+            <Text style={[styles.text, styles.timePeriod]}>{props.defaultTimePeriod}</Text>
+          </View>
           <Text style={[styles.text, styles.timeLabel]}>Default</Text>
         </View>
-        <View style = {styles.timeContainerontainer}>
-        <Text style={[styles.text, styles.time]}>{props.arrivalTime}
-        <Text style={[styles.text, styles.timePeriod]}>{props.arrivalTimePeriod}</Text></Text>
-        <Text style={[styles.text, styles.timeLabel]}>Arrival</Text>
+        <View style={styles.timeGrouping}>
+          <View style = {styles.timeContainer}>
+            <Text style={[styles.text, styles.time]}>{props.arrivalTime}</Text>
+            <Text style={[styles.text, styles.timePeriod]}>{props.arrivalTimePeriod}</Text>
+          </View>
+          <Text style={[styles.text, styles.timeLabel]}>Arrival</Text>
         </View>
       </View>
    </View>
@@ -52,14 +56,14 @@ const styles = StyleSheet.create({
   },
   alarmBlock: {
     backgroundColor: colors.background,
-    width: 400,
-    height: 120,
+    width: "95%",
+    height: 130,
     borderColor: colors.text,
     borderWidth: 1,
     borderRadius: 10,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: "3%",
   },
   topLine: {
     flexDirection:'row',
@@ -69,15 +73,16 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   topRight:{
-    height: 20,
-    width: 95,
+    width: 100,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   star: {
   },
   days:{
+    width: 80,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   repeatingDay:{
   },
@@ -88,8 +93,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  timeContainer:{
+  timeGrouping:{
     flexDirection: 'column',
+  },
+  timeContainer:{
+    flexDirection: 'row',
+    alignItems: 'baseline',
   },
   time:{
     fontSize: 50,
@@ -98,6 +107,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
   },
   timePeriod:{
+    paddingLeft: 7,
   }
 
 });
