@@ -62,6 +62,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-between',
+    flexDirection: 'column',
   },
 });
