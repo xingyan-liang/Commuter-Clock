@@ -8,7 +8,6 @@ import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessA
 
 import Header from './src/components/Header';
 import AddAlarm from './src/components/AddAlarm';
-import AlarmBlock from './src/components/AlarmBlock';
 import MainScreen from './src/screens/MainScreen';
 
 import { Quicksand_300Light, Quicksand_500Medium, useFonts } from '@expo-google-fonts/quicksand';
