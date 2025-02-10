@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Image, SafeAreaView, TextInput} from 'react-nati
 import Feather from '@expo/vector-icons/Feather';
 
 import colors from '../config/colors.js'
-import AlarmBlock from '../components/AlarmBlock';
+import AlarmBlock from '../components/AlarmBlock.js';
 
 function MainScreen(props) {
     

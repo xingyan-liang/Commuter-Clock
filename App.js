@@ -7,8 +7,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessAPI';
 
 import Header from './src/components/Header';
-import AddAlarm from './src/components/AddAlarm';
-import AlarmBlock from './src/components/AlarmBlock';
 import MainScreen from './src/screens/MainScreen';
 
 import { Quicksand_300Light, Quicksand_500Medium, useFonts } from '@expo-google-fonts/quicksand';
@@ -63,5 +61,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    backgroundColor: '#1B2028',
   },
 });
