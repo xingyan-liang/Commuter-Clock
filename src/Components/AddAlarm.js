@@ -33,16 +33,18 @@ const AddAlarm = ({closeModal}) => {
 
     // useEffect(() => {
     //     const newAlarm = {
-    //         name: name,
-    //         destination: destination,
-    //         monday: monday,
-    //         tuesday: tuesday,
-    //         wednesday: wednesday,
-    //         thursday: thursday,
-    //         friday: friday,
-    //         saturday: saturday,
-    //         sunday: sunday,
-    //         travelMethod: travelMethod  
+    //         Name: name,
+    //         Destination: destination,
+    //         Repeating: {
+    //             Monday: monday,
+    //             Tuesday: tuesday,
+    //             Wednesday: wednesday,
+    //             Thursday: thursday,
+    //             Friday: friday,
+    //             Saturday: saturday,
+    //             Sunday: sunday,
+    //         },
+    //         TravelMethod: travelMethod  
     //     };
     //     // Fetch users and update state
     //     const addNewAlarm = async () => {
