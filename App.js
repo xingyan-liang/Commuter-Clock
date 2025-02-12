@@ -1,23 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useEffect, useState } from 'react';
-import MapView from 'react-native-maps';
-import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from "expo-status-bar";
+import {
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { useEffect, useState } from "react";
+import MapView from "react-native-maps";
+import * as SplashScreen from "expo-splash-screen";
 
-import{getUsers, getUser, putUser, deleteUser, addAlarm} from './backend/accessAPI';
+import {
+  getUsers,
+  getUser,
+  putUser,
+  deleteUser,
+  addAlarm,
+} from "./backend/accessAPI";
 
-import Header from './src/components/Header';
-import AddAlarm from './src/components/AddAlarm';
-import AlarmBlock from './src/components/AlarmBlock';
-import MainScreen from './src/screens/MainScreen';
+import Header from "./src/components/Header";
+import AddAlarm from "./src/components/AddAlarm";
+import AlarmBlock from "./src/components/AlarmBlock";
+import MainScreen from "./src/screens/MainScreen";
+import colors from "./src/config/colors";
 
-import { Quicksand_300Light, Quicksand_500Medium, useFonts } from '@expo-google-fonts/quicksand';
-import { MontserratAlternates_400Regular} from '@expo-google-fonts/montserrat-alternates';
+import {
+  Quicksand_300Light,
+  Quicksand_500Medium,
+  useFonts,
+} from "@expo-google-fonts/quicksand";
+import { MontserratAlternates_400Regular } from "@expo-google-fonts/montserrat-alternates";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-
   const [loaded, error] = useFonts({
     Quicksand_300Light,
   });
@@ -41,7 +57,7 @@ export default function App() {
         setResponse("Error fetching users: " + error.message);
       }
     };
-  
+
     fetchUsers();
   }, []); // Empty dependency array ensures this runs only once
 
@@ -51,10 +67,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Header title="Commuter Clock"/>
+      <View style={styles.headerContainer}>
+        <Header />
       </View>
-      <MainScreen/>
+      <MainScreen />
+
       <StatusBar style="auto" />
     </View>
   );
@@ -62,6 +79,20 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
+    flexDirection: "column",
+    flex: 1,
+    backgroundColor: "#1B2028",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  map: {
+    width: "70%",
+    height: "70%",
+  },
+  text: {
+    color: colors.text,
+  },
+  headerContainer: {
+    alignSelf: "stretch",
   },
 });

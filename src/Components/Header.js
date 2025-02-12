@@ -3,14 +3,15 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-na
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
 
-const Header = ({ title }) => {
+const Header = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={[styles.safeArea]}>
         <View style={styles.headerContainer}>
         <TouchableOpacity style={styles.imageIcon}>
             <Feather name="image" size={35} color="white" />
         </TouchableOpacity>
-        {/* <Text style={styles.title}>{title}</Text> */}
+        
+
         <TouchableOpacity style={styles.userIcon}>
             <Feather name="user" size={35} color="white" />
         </TouchableOpacity>
