@@ -4,7 +4,7 @@ import React, { useState } from 'react';
   import AntDesign from '@expo/vector-icons/AntDesign';
   import colors from '../config/colors';
 
-  const DropdownComponent = ({data}) => {
+  const DropdownComponent = ({data, setTravelMethod}) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
@@ -13,36 +13,29 @@ import React, { useState } from 'react';
     return (
       <View style={styles.container}>
         <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+          style={[styles.dropdown, isFocus && { borderColor: 'white' }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           containerStyle={styles.con}
+          activeColor='#94AAD6'
           dropdownPosition='top'
-          iconStyle={styles.iconStyle}
           itemContainerStyle={styles.itemContainerStyle}
           itemTextStyle={styles.itemTextStyle}
           data={data}
-          search
           maxHeight={300}
           labelField="label"
           valueField="value"
-          placeholder={!isFocus ? 'Select item' : '...'}
+          placeholder={!isFocus ? 'Car' : '...'}
           searchPlaceholder="Search..."
           value={value}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={item => {
             setValue(item.value);
+            setTravelMethod(item.value);
             setIsFocus(false);
           }}
-          renderLeftIcon={() => (
-            <AntDesign
-              style={styles.icon}
-              name="Safety"
-              size={20}
-            />
-          )}
         />
       </View>
     );
@@ -60,10 +53,6 @@ import React, { useState } from 'react';
       borderWidth: 0.5,
       borderRadius: 8,
       paddingHorizontal: 8,
-    },
-    icon: {
-      marginRight: 5,
-      color: 'white',
     },
     label: {
       position: 'absolute',

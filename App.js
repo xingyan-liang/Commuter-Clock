@@ -51,7 +51,7 @@ export default function App() {
     const fetchUsers = async () => {
       try {
         const users = await getUsers();
-        console.log("User data:", users);
+        console.log("User data:", JSON.stringify(users, null, 2));
         setResponse(JSON.stringify(users, null, 2)); // Format the response for readability
       } catch (error) {
         setResponse("Error fetching users: " + error.message);

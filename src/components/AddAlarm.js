@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback, SafeAreaView, TextInp
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
 import DropdownComponent from "./DropdownComponent";
+import { addAlarm } from "../../backend/accessAPI";
 
 const transport = [
     { label: 'Car', value: 'car' },
@@ -14,6 +15,7 @@ const transport = [
   ];
 
 const AddAlarm = ({closeModal}) => {
+    // variables for new alarm
     const[name, onChangeName] = React.useState("name");
     const[destination, onChangeDest] = React.useState("Dest");
     const[monday, onChangeMon] = React.useState(false);
@@ -23,8 +25,43 @@ const AddAlarm = ({closeModal}) => {
     const[friday, onChangeFri] = React.useState(false);
     const[saturday, onChangeSat] = React.useState(false);
     const[sunday, onChangeSun] = React.useState(false);
-    const [selectedLanguage, setSelectedLanguage] = React.useState('java');
+    const [travelMethod, setTravelMethod] = React.useState('car');
+  
+    // variable for api response
+    const [response, setResponse] = useState("");
+    
 
+    // useEffect(() => {
+    //     const newAlarm = {
+    //         Name: name,
+    //         Destination: destination,
+    //         Repeating: {
+    //             Monday: monday,
+    //             Tuesday: tuesday,
+    //             Wednesday: wednesday,
+    //             Thursday: thursday,
+    //             Friday: friday,
+    //             Saturday: saturday,
+    //             Sunday: sunday,
+    //         },
+    //         TravelMethod: travelMethod  
+    //     };
+    //     // Fetch users and update state
+    //     const addNewAlarm = async () => {
+    //       try {
+    //         const response = await addAlarm('jonmaingot@gmail.com', newAlarm);
+    //         console.log("response:", response);
+    //         setResponse(JSON.stringify(users, null, 2)); // Format the response for readability
+    //       } catch (error) {
+    //         setResponse("Error adding alarm: " + error.message);
+    //       }
+    //     };
+    
+    //     addNewAlarm();
+    //   }, []); // Empty dependency array ensures this runs only once
+
+
+      
 
   return (
     <View style={styles.popUpArea}>
@@ -106,8 +143,7 @@ const AddAlarm = ({closeModal}) => {
         <View style={styles.groups}>
             <Text style={styles.miscText}>Types of Transport</Text>
             <View style={styles.map}>
-                <DropdownComponent data={transport}/>
-            
+                <DropdownComponent data={transport} setTravelMethod={setTravelMethod}/>
             </View>      
         </View>
 
