@@ -19,8 +19,6 @@ import {
 } from "./backend/accessAPI";
 
 import Header from "./src/components/Header";
-import AddAlarm from "./src/components/AddAlarm";
-import AlarmBlock from "./src/components/AlarmBlock";
 import MainScreen from "./src/screens/MainScreen";
 import colors from "./src/config/colors";
 

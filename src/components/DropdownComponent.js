@@ -5,7 +5,7 @@ import React, { useState } from 'react';
   import colors from '../config/colors';
 
   const DropdownComponent = ({data, setTravelMethod}) => {
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState('car');
     const [isFocus, setIsFocus] = useState(false);
 
 
@@ -48,10 +48,9 @@ import React, { useState } from 'react';
       backgroundColor: colors.background,
     },
     dropdown: {
-      height: 50,
+      height: 40,
       borderColor: 'white',
-      borderWidth: 0.5,
-      borderRadius: 8,
+      borderWidth: 1,
       paddingHorizontal: 8,
     },
     label: {

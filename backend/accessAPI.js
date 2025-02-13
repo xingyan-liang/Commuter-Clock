@@ -46,7 +46,7 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   export const addAlarm = async (userID, alarmTime) => { //adds alarm to user
 
     try {
-      const response = await axios.post(`${apiUrl}/users/${userID}/alarms`, {alarmTime}, {
+      const response = await axios.post(`${apiUrl}/users/${userID}/alarms`, {newAlarm: alarmTime}, {
         headers: {
           "Content-Type": "application/json"
         },
