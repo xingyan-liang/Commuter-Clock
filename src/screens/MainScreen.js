@@ -30,6 +30,7 @@ function MainScreen(props) {
                         transparent={true}
                         visible={modalOpen}
                         onRequestClose={() => setModalOpen(!modalOpen)}
+                        statusBarTranslucent
                       >
                         <TouchableWithoutFeedback onPress={() => setModalOpen(false)}>
                           <View style={styles.modalBackground}>
