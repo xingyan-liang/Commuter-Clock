@@ -6,6 +6,7 @@ import Feather from '@expo/vector-icons/Feather';
 import colors from '../config/colors.js'
 
 const AlarmBlock = (props) => {
+
   return (
     <View style={[styles.alarmBlock, styles.alarmBlockOn]}>
       <View style={styles.topLine}>
