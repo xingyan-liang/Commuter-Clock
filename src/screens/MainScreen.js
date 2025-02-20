@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import colors from '../config/colors.js'
 import AlarmBlock from '../components/AlarmBlock';
 import AddAlarm from '../components/AddAlarm';
+import Header from '../components/Header';
 
 function MainScreen(props) {
     const [modalOpen, setModalOpen] = useState(false);
@@ -13,6 +14,9 @@ function MainScreen(props) {
 
         return (
             <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Header />
+                </View>
                 <View style={styles.topLine}>
                        <Feather style = {styles.star} name="more-horizontal" size={25} color="white"/>
                     <TextInput style={styles.searchBar} placeholder="Search" clearButtonMode='always'/>
@@ -55,6 +59,10 @@ alarms:{
 white: {
     backgroundColor: 'white',
     height: 50,
+},
+headerContainer: {
+    alignSelf: "stretch",
+    paddingBlockStart: 5,
 },
 });
 

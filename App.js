@@ -22,6 +22,8 @@ import {
 import Header from "./src/components/Header";
 import MainScreen from "./src/screens/MainScreen";
 import colors from "./src/config/colors";
+import SignInScreen from "./src/screens/SignInScreen";
+import CreateAccountScreen from "./src/screens/CreatAccountScreen";
 
 import {
   Quicksand_300Light,
@@ -79,10 +81,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Header />
-      </View>
+      
       <MainScreen />
+
+      {/* <SignInScreen /> */}
+
+      {/* <CreateAccountScreen /> */}
+
 
       <StatusBar style="auto" />
     </View>
@@ -103,8 +108,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.text,
-  },
-  headerContainer: {
-    alignSelf: "stretch",
   },
 });
