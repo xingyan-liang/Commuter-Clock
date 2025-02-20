@@ -8,6 +8,8 @@ import {
   SafeAreaView,
   TextInput,
   TouchableHighlight,
+  Modal,
+  Keyboard,
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
@@ -23,10 +25,13 @@ const transport = [
   { label: "Walk", value: "walk" },
 ];
 
-const AddAlarm = ({ closeModal }) => {
+const AddAlarm = ({ closeModal, modalOpen }) => {
   // variables for new alarm
-  const [name, onChangeName] = React.useState("name");
-  const [destination, onChangeDest] = React.useState("Dest");
+  const [name, onChangeName] = React.useState(null);
+  const [destination, onChangeDest] = React.useState(null);
+  const [arrivalTime, onChangeArrival] = React.useState(null);
+  const [defaultTime, onChangeDefault] = React.useState(null);
+  const [timeToGetReady, onChangeReady] = React.useState(null);
   const [monday, onChangeMon] = React.useState(false);
   const [tuesday, onChangeTue] = React.useState(false);
   const [wednesday, onChangeWed] = React.useState(false);
@@ -43,6 +48,9 @@ const AddAlarm = ({ closeModal }) => {
     const newAlarm = {
       Name: name,
       Destination: destination,
+      ArrivalTime: arrivalTime,
+      DefaultTime: defaultTime,
+      TimeToGetReady: timeToGetReady,
       Repeating: {
         Monday: monday,
         Tuesday: tuesday,
@@ -58,7 +66,7 @@ const AddAlarm = ({ closeModal }) => {
     try {
       console.log("newAlarm:", newAlarm);
       console.log("Sending request with payload:", JSON.stringify(newAlarm, null, 2));
-      const response = await addAlarm("jonmaingot@gmail.com", newAlarm);
+      const response = await addAlarm(newAlarm);
       console.log("response:", response);
       setResponse(JSON.stringify(response, null, 2));
       closeModal(); // Close modal only after successfully adding alarm
@@ -68,6 +76,17 @@ const AddAlarm = ({ closeModal }) => {
   };
 
   return (
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalOpen}
+      onRequestClose={() => setModalOpen(!modalOpen)}
+      statusBarTranslucent
+    >
+      <TouchableWithoutFeedback onPress={() => setModalOpen(false)}>
+        <View style={styles.modalBackground}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.modalContainer}>
     <View style={styles.popUpArea}>
       <View style={styles.groups}>
         <Text style={styles.miscText}>Name</Text>
@@ -87,17 +106,23 @@ const AddAlarm = ({ closeModal }) => {
 
       <View style={styles.groups}>
         <Text style={styles.miscText}>Arrival Time</Text>
-        <TextInput style={styles.textInput}></TextInput>
+        <TextInput 
+        onChangeText={onChangeArrival}
+        style={styles.textInput}></TextInput>
       </View>
 
       <View style={styles.groups}>
         <Text style={styles.miscText}>Default Time</Text>
-        <TextInput style={styles.textInput}></TextInput>
+        <TextInput
+        onChangeText={onChangeDefault}
+        style={styles.textInput}></TextInput>
       </View>
 
       <View style={styles.groups}>
         <Text style={styles.miscText}>Time to get ready</Text>
-        <TextInput style={styles.textInput}></TextInput>
+        <TextInput 
+        onChangeText={onChangeReady}
+        style={styles.textInput}>Minutes</TextInput>
       </View>
 
       <View style={styles.groups}>
@@ -196,7 +221,12 @@ const AddAlarm = ({ closeModal }) => {
       >
         <Text>Create Alarm</Text>
       </TouchableHighlight>
-    </View>
+      </View>
+      </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </TouchableWithoutFeedback>
+  </Modal>
   );
 };
 
@@ -261,6 +291,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 200,
     height: 40,
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dim background
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  modalContainer: {
+    bottom: -40,
   },
 });
 
