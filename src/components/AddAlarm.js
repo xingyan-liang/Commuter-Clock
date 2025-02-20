@@ -8,6 +8,8 @@ import {
   SafeAreaView,
   TextInput,
   TouchableHighlight,
+  Modal,
+  Keyboard,
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
@@ -23,7 +25,7 @@ const transport = [
   { label: "Walk", value: "walk" },
 ];
 
-const AddAlarm = ({ closeModal }) => {
+const AddAlarm = ({ closeModal, modalOpen }) => {
   // variables for new alarm
   const [name, onChangeName] = React.useState(null);
   const [destination, onChangeDest] = React.useState(null);
@@ -74,6 +76,17 @@ const AddAlarm = ({ closeModal }) => {
   };
 
   return (
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalOpen}
+      onRequestClose={() => setModalOpen(!modalOpen)}
+      statusBarTranslucent
+    >
+      <TouchableWithoutFeedback onPress={() => setModalOpen(false)}>
+        <View style={styles.modalBackground}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.modalContainer}>
     <View style={styles.popUpArea}>
       <View style={styles.groups}>
         <Text style={styles.miscText}>Name</Text>
@@ -208,7 +221,12 @@ const AddAlarm = ({ closeModal }) => {
       >
         <Text>Create Alarm</Text>
       </TouchableHighlight>
-    </View>
+      </View>
+      </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </TouchableWithoutFeedback>
+  </Modal>
   );
 };
 
@@ -273,6 +291,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 200,
     height: 40,
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dim background
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  modalContainer: {
+    bottom: -40,
   },
 });
 
