@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
+import * as Crypto from 'expo-crypto';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -29,10 +30,15 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
     }
   };
 
-  export const putUser = async (password) => { //adds new user or updates info
+  export const putUser = async (email, password) => { //adds new user or updates info
+    const UUID = Crypto.randomUUID();
+
+    const user = {UserID: UUID, Email: email, Password: password, Alarms: []};
+
+    SecureStore.setItemAsync('userId', UUID);
     
     try {
-      const response = await axios.put(`${apiUrl}/users`, {UserID: await SecureStore.getItemAsync('userId'), Password: password}, {
+      const response = await axios.put(`${apiUrl}/users`, user, {
         headers: {
           "Content-Type": "application/json"
         },

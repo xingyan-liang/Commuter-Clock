@@ -9,15 +9,29 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from "react-native";
+import { putUser } from "../../backend/accessAPI.js";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 
 import colors from "../config/colors.js";
 
 function CreateAccountScreen(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("default");
+  const [password, setPassword] = useState("default");
+  const [confirmPassword, setConfirmPassword] = useState("default2");
+
+  const handleCreateAccount = async () => {
+    if (password === confirmPassword) {
+      try {
+        await putUser(email, password);
+      } catch (error) {
+        console.error("Error creating user:", error.message);
+      }
+    }
+    else {
+      console.log("Passwords do not match");
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,14 +40,14 @@ function CreateAccountScreen(props) {
 
             <View style={styles.textBoxContainer}>
                 <TextInput
-                onChangeTest={setEmail}
+                onChangeText={setEmail}
                 placeholder="Email"
                 placeholderTextColor={colors.text}
                 style={styles.textInput}
                 autoComplete="email"
                 />
                 <TextInput
-                onChangeTest={setPassword}
+                onChangeText={setPassword}
                 placeholder="Password"
                 placeholderTextColor={colors.text}
                 style={styles.textInput}
@@ -41,7 +55,7 @@ function CreateAccountScreen(props) {
                 secureTextEntry={true}
                 />
                 <TextInput
-                onChangeTest={setConfirmPassword}
+                onChangeText={setConfirmPassword}
                 placeholder="Repeat Password"
                 placeholderTextColor={colors.text}
                 style={styles.textInput}
@@ -50,7 +64,7 @@ function CreateAccountScreen(props) {
                 />
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleCreateAccount}>
                 <View style={styles.createAccountButton}>
                     <Text style={styles.buttonText}>Create Account</Text>
                 </View>
@@ -99,11 +113,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     borderColor: 'white',
+    justifyContent: 'center',
     backgroundColor: colors.secondary,
     borderWidth: 1,
     borderRadius: 10,
     width: "50%",
-    height: '17%',
+    height: 30,
   },
   buttonText: {
     fontFamily: "Quicksand_300Light",
