@@ -84,9 +84,9 @@ export default function App() {
       
       {/* <MainScreen /> */}
 
-      <SignInScreen />
+      {/* <SignInScreen /> */}
 
-      {/* <CreateAccountScreen /> */}
+      <CreateAccountScreen />
 
 
       <StatusBar style="auto" />

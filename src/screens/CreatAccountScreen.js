@@ -8,30 +8,72 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { putUser } from "../../backend/accessAPI.js";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 
 import colors from "../config/colors.js";
+import { FIREBASE_AUTH } from "../../firebaseConfig.js";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 function CreateAccountScreen(props) {
   const [email, setEmail] = useState("default");
   const [password, setPassword] = useState("default");
   const [confirmPassword, setConfirmPassword] = useState("default2");
 
+  const auth = FIREBASE_AUTH;
+
   const handleCreateAccount = async () => {
-    if (password === confirmPassword) {
-      try {
-        await putUser(email, password);
-      } catch (error) {
-        console.error("Error creating user:", error.message);
-      }
+
+    if(password !== confirmPassword) {
+      Alert.alert("Passwords do not match");
+      return;
     }
-    else {
-      console.log("Passwords do not match");
+
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      // console.log("User data:", user);
+      const response = await putUser(user.user.uid, email, password);
+      // console.log("User data:", response.data);
+    }
+    catch(error) {
+       // Handle Firebase authentication errors
+    switch (error.code) {
+        case "auth/email-already-in-use":
+          Alert.alert("Error", "This email is already registered. Try signing in.");
+          break;
+        case "auth/invalid-email":
+          Alert.alert("Error", "Invalid email format. Please enter a valid email.");
+          break;
+        case "auth/weak-password":
+          Alert.alert("Error", "Password is too weak. Use at least 6 characters.");
+          break;
+        case "auth/network-request-failed":
+          Alert.alert("Error", "Network error. Please check your internet connection.");
+          break;
+        default:
+          Alert.alert("Error", error.message);
+          break;
+      }
+
+      console.error("Error creating user:", error.code, error.message);
     }
   }
+
+  // const handleCreateAccount = async () => {
+  //   if (password === confirmPassword) {
+  //     try {
+  //       await putUser(email, password);
+  //     } catch (error) {
+  //       console.error("Error creating user:", error.message);
+  //     }
+  //   }
+  //   else {
+  //     console.log("Passwords do not match");
+  //   }
+  // }
 
   return (
     <SafeAreaView style={styles.container}>
