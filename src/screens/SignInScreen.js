@@ -21,31 +21,38 @@ function SignInScreen(props) {
   return (
     <SafeAreaView style={styles.container}>
 
-            <Text style={styles.title}>Sign In</Text>
+            <View style={styles.container}>
+              <Text style={styles.title}>Sign In</Text>
 
-            <View style={styles.textBoxContainer}>
-                <TextInput
-                onChangeTest={setEmail}
-                placeholder="Email"
-                placeholderTextColor={colors.text}
-                style={styles.textInput}
-                autoComplete="email"
-                />
-                <TextInput
-                onChangeTest={setPassword}
-                placeholder="Password"
-                placeholderTextColor={colors.text}
-                style={styles.textInput}
-                autoComplete="current-password"
-                secureTextEntry={true}
-                />
+              <View style={styles.textBoxContainer}>
+                  <TextInput
+                  onChangeTest={setEmail}
+                  placeholder="Email"
+                  placeholderTextColor={colors.text}
+                  style={styles.textInput}
+                  autoComplete="email"
+                  />
+                  <TextInput
+                  onChangeTest={setPassword}
+                  placeholder="Password"
+                  placeholderTextColor={colors.text}
+                  style={styles.textInput}
+                  autoComplete="current-password"
+                  secureTextEntry={true}
+                  />
+              </View>
+
+              <TouchableOpacity style={styles.createAccountButton}>
+                      <Text style={styles.buttonText}>Sign In</Text>
+              </TouchableOpacity>
+
+              <View style={styles.bottomLine}/>
+
+              <TouchableOpacity style={{marginBlockStart: 15}}>
+                      <Text style={styles.createAccount}>New to Wake Way? Create an Account</Text>
+              </TouchableOpacity>
             </View>
 
-            <TouchableOpacity>
-                <View style={styles.createAccountButton}>
-                    <Text style={styles.buttonText}>Create Account</Text>
-                </View>
-            </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -90,16 +97,32 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     borderColor: 'white',
+    justifyContent: 'center',
     backgroundColor: colors.secondary,
     borderWidth: 1,
     borderRadius: 10,
-    width: "50%",
-    height: '17%',
+
+    marginBlockEnd: 15,
   },
   buttonText: {
     fontFamily: "Quicksand_300Light",
     color: colors.text,
     fontSize: 15,
+    paddingBlock: 10,
+    paddingInline: 20,
+  },
+  bottomLine: {
+    width: "80%",
+    height: 1,
+    backgroundColor: colors.text,
+    alignSelf: "center",
+  },
+  createAccount: {
+    fontFamily: "Quicksand_300Light",
+    color: colors.text,
+    fontSize: 15,
+    alignSelf: "center",
+    textDecorationLine: "underline",
   },
 });
 
