@@ -26,7 +26,7 @@ function MainScreen(props) {
                 </View>
 
                 
-                <AddAlarm closeModal={() => setModalOpen(false)} modalOpen={modalOpen} />
+                <AddAlarm closeModal={() => setModalOpen(false)} modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                            
             </SafeAreaView>
         );
