@@ -25,7 +25,7 @@ const transport = [
   { label: "Walk", value: "walk" },
 ];
 
-const AddAlarm = ({ closeModal, modalOpen }) => {
+const AddAlarm = ({ closeModal, modalOpen, setModalOpen }) => {
   // variables for new alarm
   const [name, onChangeName] = React.useState(null);
   const [destination, onChangeDest] = React.useState(null);
