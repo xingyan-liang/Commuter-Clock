@@ -13,13 +13,13 @@ const AlarmBlock = (props) => {
         <Text style = {[styles.text, styles.alarmName]}>{props.name}</Text>
         <View style = {styles.topRight}>
           <View style = {styles.days}>
-            <Text style={[styles.text, styles.nonRepeatingDay]}>S</Text>
-            <Text style={[styles.text, styles.nonRepeatingDay]}>M</Text>
-            <Text style={[styles.text, styles.repeatingDay]}>T</Text>
-            <Text style={[styles.text, styles.nonRepeatingDay]}>W</Text>
-            <Text style={[styles.text, styles.nonRepeatingDay]}>T</Text>
-            <Text style={[styles.text, styles.repeatingDay]}>F</Text>
-            <Text style={[styles.text, styles.nonRepeatingDay]}>S</Text>
+            <Text style={[styles.text, props.sunday ? styles.repeatingDay : styles.nonRepeatingDay]}>S</Text>
+            <Text style={[styles.text, props.monday ? styles.repeatingDay : styles.nonRepeatingDay]}>M</Text>
+            <Text style={[styles.text, props.tuesday ? styles.repeatingDay : styles.nonRepeatingDay]}>T</Text>
+            <Text style={[styles.text, props.wednesday? styles.repeatingDay : styles.nonRepeatingDay]}>W</Text>
+            <Text style={[styles.text, props.thursday ? styles.repeatingDay : styles.nonRepeatingDay]}>T</Text>
+            <Text style={[styles.text, props.friday ? styles.repeatingDay : styles.nonRepeatingDay]}>F</Text>
+            <Text style={[styles.text, props.saturday ? styles.repeatingDay : styles.nonRepeatingDay]}>S</Text>
           </View>
           <Feather style = {styles.star} name="star" size={15} color="white"/>
         </View>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   alarmBlock: {
     backgroundColor: colors.background,
-    width: "95%",
+    width: 400,
     height: 130,
     borderColor: colors.text,
     borderWidth: 1,

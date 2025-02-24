@@ -32,17 +32,11 @@ function MainScreen(props) {
         fetchUser();
       }, []); // Empty dependency array ensures this runs only once
 
-      {/*const renderItems = () => {
-        user.Alarms.map((alarm) => (
-          <AlarmBlock name={alarm.Name} />
-        ));
-      };*/}
-
       const renderItems = () => {
         if (user && Array.isArray(user.Alarms)) {
           return user.Alarms.map((alarm) => (
             <View>
-              <AlarmBlock key={alarm.Name} name={alarm.Name} />
+              <AlarmBlock key={alarm.Name} name={alarm.Name} sunday={alarm.Sunday} monday={alarm.Monday} tuesday={alarm.Tuesday} wednesday={alarm.Wednesday} thursday={alarm.Thursday} friday={alarm.Friday} saturday={alarm.Saturday}/>
             </View>
           ));
         } else {
@@ -62,14 +56,12 @@ function MainScreen(props) {
                   </TouchableOpacity>
               </View>
 
-              <ScrollView>
-                <View style={styles.alarms}>
+              <View style={styles.alarms}>
+              <ScrollView >
                     <AlarmBlock name="exampleName" defaultHour="12" defaultMin="30" defaultTimePeriod = "AM" arrivalHour="03" arrivalMin="45" arrivalTimePeriod = "PM"/>
-                </View>
-                <View>
-                  {renderItems()}
-                </View>
+                    {renderItems()}
               </ScrollView>
+              </View>
 
                 <Modal
                         animationType="slide"
@@ -99,18 +91,29 @@ const styles = StyleSheet.create({
 container:{
     width: '100%',
     height: '100%',
+    //alignItems: 'center',
 },
 topLine:{
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '5%',
+    flex: 1,
 },
 searchBar:{
     width: '50%',
     height: 50,
 },
 alarms:{
+  flex: 7,
+  flexDirection: 'column',
+  alignItems: 'center',
+  borderColor: colors.text,
+  borderWidth: 1,
+
+},
+scrollViewContainer:{
+  
 },
 white: {
     backgroundColor: 'white',
