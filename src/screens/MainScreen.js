@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, SafeAreaView, TextInput, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, SafeAreaView, TextInput, TouchableWithoutFeedback, TouchableOpacity, Modal, Keyboard, ScrollView} from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { useEffect, useState } from "react";
 
