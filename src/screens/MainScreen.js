@@ -63,23 +63,9 @@ function MainScreen(props) {
               </ScrollView>
               </View>
 
-                <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalOpen}
-                        onRequestClose={() => setModalOpen(!modalOpen)}
-                        statusBarTranslucent
-                      >
-                        <TouchableWithoutFeedback onPress={() => setModalOpen(false)}>
-                          <View style={styles.modalBackground}>
-                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                              <View style={styles.modalContainer}>
-                                <AddAlarm closeModal={() => setModalOpen(false)} />
-                              </View>
-                            </TouchableWithoutFeedback>
-                          </View>
-                        </TouchableWithoutFeedback>
-                      </Modal>
+                
+                <AddAlarm closeModal={() => setModalOpen(false)} modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                           
             </SafeAreaView>
         );
     
@@ -119,15 +105,6 @@ white: {
     backgroundColor: 'white',
     height: 50,
 },
-modalBackground: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dim background
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  modalContainer: {
-    bottom: -40,
-  },
 });
 
 export default MainScreen;

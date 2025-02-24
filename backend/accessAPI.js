@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -17,10 +18,10 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   };
 
 
-  export const getUser = async (userID) => { //gets user of app
+  export const getUser = async () => { //gets user of app
     
     try {
-      const response = await axios.get(`${apiUrl}/users/${userID}`);
+      const response = await axios.get(`${apiUrl}/users/${await SecureStore.getItemAsync('userId')}`);
       console.log("User data:", response.data);
       return response.data;
     } catch (error) {
@@ -28,10 +29,10 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
     }
   };
 
-  export const putUser = async (userID, password) => { //adds new user or updates info
+  export const putUser = async (password) => { //adds new user or updates info
     
     try {
-      const response = await axios.put(`${apiUrl}/users`, {UserID: userID, Password: password}, {
+      const response = await axios.put(`${apiUrl}/users`, {UserID: await SecureStore.getItemAsync('userId'), Password: password}, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -43,10 +44,10 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
     }
   };
 
-  export const addAlarm = async (userID, alarmTime) => { //adds alarm to user
+  export const addAlarm = async (alarmTime) => { //adds alarm to user
 
     try {
-      const response = await axios.post(`${apiUrl}/users/${userID}/alarms`, {newAlarm: alarmTime}, {
+      const response = await axios.post(`${apiUrl}/users/${await SecureStore.getItemAsync('userId')}/alarms`, {newAlarm: alarmTime}, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -58,16 +59,17 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
     }
   }
 
-  export const deleteUser = async (userID) => { //deletes user(may not need)
+  export const deleteUser = async () => { //deletes user(may not need)
     
     try {
-      const response = await axios.delete(`${apiUrl}/users/${userID}`);
+      const response = await axios.delete(`${apiUrl}/users/${await SecureStore.getItemAsync('userId')}`);
       console.log("User data:", response.data);
       return response.data;
     } catch (error) {
       console.error("Error deleting user:", error.message);
     }
   };
+
 
 
 // test for API functions
