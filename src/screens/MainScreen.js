@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import colors from '../config/colors.js'
 import AlarmBlock from '../components/AlarmBlock';
 import AddAlarm from '../components/AddAlarm';
+import Header from '../components/Header';
+
 import {
   getUsers,
   getUser,
@@ -47,6 +49,9 @@ function MainScreen(props) {
 
         return (
             <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Header />
+                </View>
               
               <View style={styles.topLine}>
                       <Feather style = {styles.star} name="more-horizontal" size={25} color="white"/>
@@ -104,6 +109,10 @@ scrollViewContainer:{
 white: {
     backgroundColor: 'white',
     height: 50,
+},
+headerContainer: {
+    alignSelf: "stretch",
+    paddingBlockStart: 5,
 },
 });
 

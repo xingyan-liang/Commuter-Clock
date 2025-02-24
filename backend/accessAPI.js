@@ -29,10 +29,14 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
     }
   };
 
-  export const putUser = async (password) => { //adds new user or updates info
+  export const putUser = async (uuid, email, password) => { //adds new user or updates info
+
+    const user = {UserID: uuid, Email: email, Password: password, Alarms: []};
+
+    SecureStore.setItemAsync('userId', uuid);
     
     try {
-      const response = await axios.put(`${apiUrl}/users`, {UserID: await SecureStore.getItemAsync('userId'), Password: password}, {
+      const response = await axios.put(`${apiUrl}/users`, user, {
         headers: {
           "Content-Type": "application/json"
         },
