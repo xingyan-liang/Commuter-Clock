@@ -76,7 +76,7 @@ export default function App() {
   if (!loaded && !error) {
     return null;
   }
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
