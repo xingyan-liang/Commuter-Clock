@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import colors from '../config/colors.js'
 import AlarmBlock from '../components/AlarmBlock';
 import AddAlarm from '../components/AddAlarm';
+import Header from '../components/Header';
+
 import {
   getUsers,
   getUser,
@@ -47,6 +49,9 @@ function MainScreen(props) {
 
         return (
             <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Header />
+                </View>
               
               <View style={styles.topLine}>
                       <Feather style = {styles.star} name="more-horizontal" size={25} color="white"/>
@@ -63,23 +68,9 @@ function MainScreen(props) {
               </ScrollView>
               </View>
 
-                <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalOpen}
-                        onRequestClose={() => setModalOpen(!modalOpen)}
-                        statusBarTranslucent
-                      >
-                        <TouchableWithoutFeedback onPress={() => setModalOpen(false)}>
-                          <View style={styles.modalBackground}>
-                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                              <View style={styles.modalContainer}>
-                                <AddAlarm closeModal={() => setModalOpen(false)} />
-                              </View>
-                            </TouchableWithoutFeedback>
-                          </View>
-                        </TouchableWithoutFeedback>
-                      </Modal>
+                
+                <AddAlarm closeModal={() => setModalOpen(false)} modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                           
             </SafeAreaView>
         );
     
@@ -119,15 +110,10 @@ white: {
     backgroundColor: 'white',
     height: 50,
 },
-modalBackground: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dim background
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  modalContainer: {
-    bottom: -40,
-  },
+headerContainer: {
+    alignSelf: "stretch",
+    paddingBlockStart: 5,
+},
 });
 
 export default MainScreen;

@@ -1,0 +1,21 @@
+{
+    "Alarms": [
+     {
+      "Destination": "Your house",
+      "Name": "Second alarm",
+      "TimeToGetReady": 15,
+      "Repeating": {
+       "Friday": false,
+       "Monday": true,
+       "Saturday": false,
+       "Sunday": true,
+       "Thursday": false,
+       "Tuesday": false,
+       "Wednesday": false
+      },
+      "ArrivalTime": "2025-02-13T12:30:00Z",
+      "DefaultTime": 20,
+      "TravelMethod": "bike"
+     }
+    ]
+   }

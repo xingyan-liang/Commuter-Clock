@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import MapView from "react-native-maps";
 import * as SplashScreen from "expo-splash-screen";
+import * as SecureStore from 'expo-secure-store';
 
 import {
   getUsers,
@@ -21,6 +22,8 @@ import {
 import Header from "./src/components/Header";
 import MainScreen from "./src/screens/MainScreen";
 import colors from "./src/config/colors";
+import SignInScreen from "./src/screens/SignInScreen";
+import CreateAccountScreen from "./src/screens/CreatAccountScreen";
 
 import {
   Quicksand_300Light,
@@ -36,13 +39,26 @@ export default function App() {
     Quicksand_300Light,
   });
 
+  const [userId, setUserId] = useState(null);
+  const [response, setResponse] = useState("");
+
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
     }
   }, [loaded, error]);
 
-  const [response, setResponse] = useState("");
+
+  useEffect(() => { //loads userID
+    async function loadUserId() {
+      SecureStore.setItemAsync('userId', 'jonmaingot@gmail.com'); //TODO: change later
+      const storedUserId = await SecureStore.getItemAsync('userId');
+      if (storedUserId) {
+        setUserId(storedUserId);
+      }
+    }
+    loadUserId();
+  }, []);
 
   useEffect(() => {
     // Fetch users and update state
@@ -65,10 +81,13 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Header />
-      </View>
-      <MainScreen />
+      
+      {/* <MainScreen /> */}
+
+      {/* <SignInScreen /> */}
+
+      <CreateAccountScreen />
+
 
       <StatusBar style="auto" />
     </View>
@@ -89,8 +108,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.text,
-  },
-  headerContainer: {
-    alignSelf: "stretch",
   },
 });
