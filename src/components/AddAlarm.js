@@ -122,7 +122,8 @@ const AddAlarm = ({ closeModal, modalOpen, setModalOpen }) => {
         <Text style={styles.miscText}>Time to get ready</Text>
         <TextInput 
         onChangeText={onChangeReady}
-        style={styles.textInput}>Minutes</TextInput>
+        style={styles.textInput}
+        keyboardType="numeric">Minutes</TextInput>
       </View>
 
       <View style={styles.groups}>
