@@ -38,7 +38,7 @@ function MainScreen(props) {
         if (user && Array.isArray(user.Alarms)) {
           return user.Alarms.map((alarm) => (
             <View>
-              <AlarmBlock key={alarm.Name} name={alarm.Name} sunday={alarm.Sunday} monday={alarm.Monday} tuesday={alarm.Tuesday} wednesday={alarm.Wednesday} thursday={alarm.Thursday} friday={alarm.Friday} saturday={alarm.Saturday}/>
+              <AlarmBlock alarm={alarm}/> {/*key={alarm.Name} name={alarm.Name} sunday={alarm.Sunday} monday={alarm.Monday} tuesday={alarm.Tuesday} wednesday={alarm.Wednesday} thursday={alarm.Thursday} friday={alarm.Friday} saturday={alarm.Saturday}/>*/}
             </View>
           ));
         } else {

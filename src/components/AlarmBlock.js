@@ -5,21 +5,21 @@ import Feather from '@expo/vector-icons/Feather';
 
 import colors from '../config/colors.js'
 
-const AlarmBlock = (props) => {
+const AlarmBlock = ({alarm}) => {
 
   return (
     <View style={[styles.alarmBlock, styles.alarmBlockOn]}>
       <View style={styles.topLine}>
-        <Text style = {[styles.text, styles.alarmName]}>{props.name}</Text>
+        <Text style = {[styles.text, styles.alarmName]}>{alarm?.Name}</Text>
         <View style = {styles.topRight}>
           <View style = {styles.days}>
-            <Text style={[styles.text, props.sunday ? styles.repeatingDay : styles.nonRepeatingDay]}>S</Text>
-            <Text style={[styles.text, props.monday ? styles.repeatingDay : styles.nonRepeatingDay]}>M</Text>
-            <Text style={[styles.text, props.tuesday ? styles.repeatingDay : styles.nonRepeatingDay]}>T</Text>
-            <Text style={[styles.text, props.wednesday? styles.repeatingDay : styles.nonRepeatingDay]}>W</Text>
-            <Text style={[styles.text, props.thursday ? styles.repeatingDay : styles.nonRepeatingDay]}>T</Text>
-            <Text style={[styles.text, props.friday ? styles.repeatingDay : styles.nonRepeatingDay]}>F</Text>
-            <Text style={[styles.text, props.saturday ? styles.repeatingDay : styles.nonRepeatingDay]}>S</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Sunday ? styles.repeatingDay : styles.nonRepeatingDay]}>S</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Monday ? styles.repeatingDay : styles.nonRepeatingDay]}>M</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Tuesday? styles.repeatingDay : styles.nonRepeatingDay]}>T</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Wednesday ? styles.repeatingDay : styles.nonRepeatingDay]}>W</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Thursday ? styles.repeatingDay : styles.nonRepeatingDay]}>T</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Friday ? styles.repeatingDay : styles.nonRepeatingDay]}>F</Text>
+            <Text style={[styles.text, alarm?.Repeating?.Saturday? styles.repeatingDay : styles.nonRepeatingDay]}>S</Text>
           </View>
           <Feather style = {styles.star} name="star" size={15} color="white"/>
         </View>
@@ -27,15 +27,15 @@ const AlarmBlock = (props) => {
       <View style={styles.bottomLine}>
         <View style={styles.timeGrouping}>
           <View style = {styles.timeContainer}>
-            <Text style={[styles.text, styles.time]}>{props.defaultHour}:{props.defaultMin}</Text>
-            <Text style={[styles.text, styles.timePeriod]}>{props.defaultTimePeriod}</Text>
+            <Text style={[styles.text, styles.time]}>:</Text>
+            <Text style={[styles.text, styles.timePeriod]}></Text>
           </View>
           <Text style={[styles.text, styles.timeLabel]}>Default</Text>
         </View>
         <View style={styles.timeGrouping}>
           <View style = {styles.timeContainer}>
-            <Text style={[styles.text, styles.time]}>{props.arrivalHour}:{props.arrivalMin}</Text>
-            <Text style={[styles.text, styles.timePeriod]}>{props.arrivalTimePeriod}</Text>
+            <Text style={[styles.text, styles.time]}>:</Text>
+            <Text style={[styles.text, styles.timePeriod]}></Text>
           </View>
           <Text style={[styles.text, styles.timeLabel]}>Arrival</Text>
         </View>

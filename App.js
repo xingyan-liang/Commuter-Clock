@@ -82,11 +82,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       
-      {/* <MainScreen /> */}
+      <MainScreen />
 
       {/* <SignInScreen /> */}
 
-      <CreateAccountScreen />
+      {/*<CreateAccountScreen />*/}
 
 
       <StatusBar style="auto" />
