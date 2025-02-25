@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import MapView from "react-native-maps";
 import * as SplashScreen from "expo-splash-screen";
 import * as SecureStore from 'expo-secure-store';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from "@react-navigation/native";
 
 import {
   getUsers,
@@ -33,6 +35,7 @@ import {
 import { MontserratAlternates_400Regular } from "@expo-google-fonts/montserrat-alternates";
 
 SplashScreen.preventAutoHideAsync();
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -80,17 +83,21 @@ export default function App() {
   }
   
   return (
-    <View style={styles.container}>
-      
-      {/* <MainScreen /> */}
-
-      {/* <SignInScreen /> */}
-
-      <CreateAccountScreen />
-
-
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen 
+          name="Main" 
+          component={MainScreen}
+          options={{
+            header: (props) => <Header {...props} />,
+            title: 'Custom Header', // Title for the header
+        }}
+        />
+        <Stack.Screen name="Sign In" component={SignInScreen} />
+        <Stack.Screen name="Create Account" component={CreateAccountScreen} />
+      </Stack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 

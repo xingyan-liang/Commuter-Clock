@@ -1,21 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+import {Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu"
 import Feather from "@expo/vector-icons/Feather";
 import colors from "../config/colors";
 
-const Header = () => {
+const Header = ({navigation, route, options, back}) => {
   return (
     <SafeAreaView style={[styles.safeArea]}>
-        <View style={styles.headerContainer}>
+      <View style={styles.headerContainer}>
         <TouchableOpacity style={styles.imageIcon}>
             <Feather name="image" size={35} color="white" />
         </TouchableOpacity>
-        
-
-        <TouchableOpacity style={styles.userIcon}>
-            <Feather name="user" size={35} color="white" />
-        </TouchableOpacity>
-        </View>
+        <MenuProvider>
+          <Menu>
+            <MenuTrigger>
+              <Feather name="user" size={35} color="white" />
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption onSelect={ ()=> navigation.navigate("Main")} text="Alarms" />
+              <MenuOption onSelect={ ()=> navigation.navigate("Sign In")} text="Sign In" />
+              <MenuOption onSelect={ ()=> navigation.navigate("Create Account")} text="Create Account" />
+            </MenuOptions>
+          </Menu>
+        </MenuProvider>
+      </View>
     </SafeAreaView>
   );
 };
@@ -51,6 +59,9 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "center",
   },
+  menuContainer: {
+
+  }
 });
 
 export default Header;
