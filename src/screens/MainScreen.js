@@ -49,10 +49,6 @@ function MainScreen(props) {
 
         return (
             <SafeAreaView style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <Header />
-                </View>
-              
               <View style={styles.topLine}>
                       <Feather style = {styles.star} name="more-horizontal" size={25} color="white"/>
                   <TextInput style={styles.searchBar} placeholder="Search" clearButtonMode='always'/>
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
 container:{
     width: '100%',
     height: '100%',
-    //alignItems: 'center',
+    backgroundColor: colors.background
 },
 topLine:{
     flexDirection: 'row',
