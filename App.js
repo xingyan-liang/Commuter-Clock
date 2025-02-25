@@ -93,8 +93,8 @@ export default function App() {
             title: 'Custom Header', // Title for the header
         }}
         />
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="CreateAccoung" component={CreateAccountScreen} />
+        <Stack.Screen name="Sign In" component={SignInScreen} />
+        <Stack.Screen name="Create Account" component={CreateAccountScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

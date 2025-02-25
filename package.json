@@ -39,6 +39,7 @@
     "react-native-element-dropdown": "^2.12.4",
     "react-native-get-random-values": "^1.11.0",
     "react-native-maps": "1.18.0",
+    "react-native-popup-menu": "^0.16.1",
     "react-native-vector-icons": "^10.2.0",
     "uuid": "^11.1.0"
   },
